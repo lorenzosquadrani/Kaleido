@@ -1,4 +1,3 @@
 # Occluded_polygons
 
-Very simple algorythm that generate different polygons on grid pattern backgrounds.
-For now we only have triangles, soon circles will be added an probabily also some random "control" figures.
+Very simple algorythm that builds an arbitrary data matrix in which every row consists of a reshaped square drawing. The drawing usually shows some polygon (triangle for now) or a circle in front of or behind a grid pattern.
