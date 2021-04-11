@@ -1,2 +1,10 @@
 # Kaleido
-Very simple algorythm that builds an arbitrary data matrix in which every row consists of a reshaped square drawing. The drawing usually shows some polygon (triangle for now) or a circle in front of or behind a grid pattern.
+CNN training framework. As for now it has three modes (be careful to setup correctly the shebang)
+
+`$ kaleido.py generate *pixels_per_dimension* *training_number* *test_number*`  
+`$ kaleido.py view`  
+`$ kaleido.py train`  
+
+    -
+
+
