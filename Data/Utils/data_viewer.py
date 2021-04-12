@@ -8,10 +8,8 @@ import matplotlib.pyplot as plt
 
 def viewData():
     # load the good good
-    trainingCircles = np.load('Data/Datasets/training_DrawCircle.npy')
-    trainingTriangles = np.load('Data/Datasets/training_DrawTriangle.npy')
-    testCircles = np.load('Data/Datasets/test_DrawCircle.npy')
-    testTriangles = np.load('Data/Datasets/test_DrawTriangle.npy')
+    training_dataset = np.load('Data/Datasets/training_dataset.npy')
+    test_dataset = np.load('Data/Datasets/test_dataset.npy')
 
     # print out some useful information
     print('\n Circles training dataset')
@@ -44,7 +42,7 @@ def viewData():
     training_circle = np.random.random_integers(0,len(trainingCircles[:,0,0,0])-1)
     training_triangle = np.random.random_integers(0,len(trainingTriangles[:,0,0,0])-1)
     test_circle = np.random.random_integers(0,len(testCircles[:,0,0,0])-1)
-    test_triangle = np.random.random_integers(0,len(testTriangles[:,0,0,0]))
+    test_triangle = np.random.random_integers(0,len(testTriangles[:,0,0,0])-1)
 
 
     fig = plt.figure()

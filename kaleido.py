@@ -4,6 +4,8 @@ import sys
 from Data.Generating_algorythms.generator import generator
 from Data.Utils.data_viewer import viewData
 from CNN.train import train
+import IL
+import numpy as np
 
 args = sys.argv[1:]
 
@@ -14,6 +16,7 @@ if (args[0] == 'generate'):
     gridParams = [[3,5],[1,3]] # ((gauge_min, gauge_max),(width_min, width_max))
     beauty_factor = 0.05 # difference % from empty (see generator.py for more details)
 
+    # chech the mode options
     if ('-g' in args[4:]):
         index = args.index('-g')
         gridParams[0][0] = int(args[index+1])
@@ -42,14 +45,40 @@ if (args[0] == 'generate'):
         index = args.index('--beauty')
         beauty_factor = float(args[index+1])
 
-    generator('training', 'circles', resolution, trainingNumber, gridParams, beauty_factor)
-    generator('training', 'triangles', resolution, trainingNumber, gridParams, beauty_factor)
-    generator('test', 'circles', resolution, testNumber, gridParams, beauty_factor)
-    generator('test', 'triangles',resolution, testNumber, gridParams, beauty_factor)
+    # construct cubic tensor + labels for the training
+    print("\n ### Generating the training figures...")
+    i = 0
+    training_figures = np.zeros((trainingNumber*len(IL.figures),resolution,resolution))
+    training_labels = np.zeros(trainingNumber*len(IL.figures))
+    for figure in IL.figures:
+        temp = generator('training', figure, resolution, trainingNumber, gridParams, beauty_factor)
+        training_figures[i*trainingNumber:(i+1)*trainingNumber] = temp
+        training_labels[i*trainingNumber:(i+1)*trainingNumber] = i   
+        i+=1
 
-    print('\n Training and test datasets generated succesfully.\n You can now:')
-    print(' - view some dataset items with with $ kaleido view')
-    print(' - traing the neural network with $ kaleido train\n')
+    np.save("Data/Datasets/training_figures.npy", training_figures)
+    np.save("Data/Datasets/training_labels.npy", training_labels)
+    print(f"\n ...training figures generation succesful, shape {training_figures.shape} ###")
+
+    # construct cubic tensor + labels for the test
+    print("\n ### Generating the test figures...")
+    i = 0
+    test_figures = np.zeros((testNumber*len(IL.figures),resolution,resolution))
+    test_labels = np.zeros(testNumber*len(IL.figures))
+    for figure in IL.figures:
+        temp = generator('test', figure, resolution, testNumber, gridParams, beauty_factor)
+        test_figures[i*testNumber:(i+1)*testNumber] = temp
+        test_labels[i*testNumber:(i+1)*testNumber] = i
+        i+=1
+
+    np.save("Data/Datasets/test_labels.npy", test_labels)
+    np.save("Data/Datasets/test_figures.npy", test_figures)
+    print(f"\n ...test figures generation succesful, shape {test_figures.shape} ###")
+    
+
+    print('\n You can now:')
+    print(' - $ kaleido view_data')
+    print(' - $ kaleido train\n')
 
 
 if (args[0] == 'view_data'):
