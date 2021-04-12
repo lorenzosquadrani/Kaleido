@@ -25,7 +25,7 @@ def generator(
     beauty = int(resolution*resolution*beauty_factor)
 
     # Print chosen parameters
-    print(f'\n # Generating {datasetType} data tensor with {drawFunction.__name__} function.')
+    print(f' # Generating {datasetType} data tensor with {drawFunction.__name__} function.')
     print(f"    Number of figures to be generated: {figNumber}")
     print(f"    Number of channels: 1")
     print(f"    Figure resolution: {resolution} x {resolution}")
@@ -48,5 +48,5 @@ def generator(
         payload[i,:,:] = figure
         
 
-    print('  Completed. #')
+    print('  Completed. #\n')
     return payload

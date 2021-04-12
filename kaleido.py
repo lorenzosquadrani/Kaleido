@@ -1,4 +1,4 @@
-#!/home/janko/miniconda3/bin/python
+#!/home/janko/miniconda3/bin/python -B
 
 import sys
 from Data.Generating_algorythms.generator import generator
@@ -47,6 +47,7 @@ if (args[0] == 'generate'):
 
     # construct cubic tensor + labels for the training
     print("\n ### Generating the training figures...")
+    print("-------------------------------")
     i = 0
     training_figures = np.zeros((trainingNumber*len(IL.figures),resolution,resolution))
     training_labels = np.zeros(trainingNumber*len(IL.figures))
@@ -58,10 +59,11 @@ if (args[0] == 'generate'):
 
     np.save("Data/Datasets/training_figures.npy", training_figures)
     np.save("Data/Datasets/training_labels.npy", training_labels)
-    print(f"\n ...training figures generation succesful, shape {training_figures.shape} ###")
+    print(f"...training figures generation succesful, shape {training_figures.shape} ###")
 
     # construct cubic tensor + labels for the test
-    print("\n ### Generating the test figures...")
+    print("\n\n ### Generating the test figures...")
+    print("-------------------------------")
     i = 0
     test_figures = np.zeros((testNumber*len(IL.figures),resolution,resolution))
     test_labels = np.zeros(testNumber*len(IL.figures))
@@ -73,7 +75,7 @@ if (args[0] == 'generate'):
 
     np.save("Data/Datasets/test_labels.npy", test_labels)
     np.save("Data/Datasets/test_figures.npy", test_figures)
-    print(f"\n ...test figures generation succesful, shape {test_figures.shape} ###")
+    print(f"...test figures generation succesful, shape {test_figures.shape} ###")
     
 
     print('\n You can now:')
