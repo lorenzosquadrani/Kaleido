@@ -59,7 +59,7 @@ if (args[0] == 'generate'):
 
     np.save("Data/Datasets/training_figures.npy", training_figures)
     np.save("Data/Datasets/training_labels.npy", training_labels)
-    print(f"...training figures generation succesful, shape {training_figures.shape} ###")
+    print(f"...training figures generation succesful, tensor shape {training_figures.shape} ###")
 
     # construct cubic tensor + labels for the test
     print("\n\n ### Generating the test figures...")
@@ -75,7 +75,7 @@ if (args[0] == 'generate'):
 
     np.save("Data/Datasets/test_labels.npy", test_labels)
     np.save("Data/Datasets/test_figures.npy", test_figures)
-    print(f"...test figures generation succesful, shape {test_figures.shape} ###")
+    print(f"...test figures generation succesful, tensor shape {test_figures.shape} ###")
     
 
     print('\n You can now:')
