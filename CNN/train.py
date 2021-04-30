@@ -32,6 +32,9 @@ def train():
 
     images, labels = dataiter.next()
 
-    img_grid = torchvision.utils.make_grid(images)
-    plt.imshow(img_grid)
+    img_grid = (torchvision.utils.make_grid(images)).numpy()
     writer.add_image('prova',img_grid)
+    
+    plt.imshow(np.transpose(img_grid, (1,2,0)))
+    plt.show()
+    
